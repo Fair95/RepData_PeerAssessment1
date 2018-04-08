@@ -30,13 +30,13 @@ ggplot(data = ts, aes(x = date,y = steps) ) + geom_histogram(stat = "identity")
 tmean <- with(dat,tapply(steps,date,mean,rm.na = TRUE))
 tmedian <- with(dat,tapply(steps,date,median,rm.na = TRUE))
 ```
-The mean is `tmean`, the median is `tmedian`.
+The mean is `r tmean`, the median is `r tmedian`.
 ## What is the average daily activity pattern?
 ```{r, echo = TRUE}
 is <- aggregate(steps~interval, dat, mean, rm.na = TRUE)
 ggplot(data = is, aes(x = interval, y = steps)) + geom_line()
 ```
-The interval contains the maximum number of steps is [`is$interval[which.max(is$step)]`, `is$interval[which.max(is$step)]+5`]
+The interval contains the maximum number of steps is [`r is$interval[which.max(is$step)]`, `r is$interval[which.max(is$step)]+5`]
 
 
 
@@ -45,7 +45,7 @@ In the previous analysis, we exclude all the cases which contain missing values.
 ```{r ,echo = TRUE}
 nmissing <- sum(!complete.cases(dat))
 ```
-It appears that we have `nmissing` missing values.
+It appears that we have `r nmissing` missing values.
 
 To address the effect of missing cases, we can replace all missing values with the mean of steps in that particular time interval.
 ```{r, echo = TRUE}
@@ -63,7 +63,7 @@ Now lets check the mean and median change
 tmean2 <- with(dat2,tapply(steps,date,mean,rm.na = TRUE))
 tmedian2 <- with(dat2,tapply(steps,date,median,rm.na = TRUE))
 ```
-The new mean is `tmean2` and new median is `tmedian2`
+The new mean is `r tmean2` and new median is `r tmedian2`
 Here we can conclude that imputing the missing value in this way will sligtly increase the mean and median.
 
 ## Are there differences in activity patterns between weekdays and weekends?
